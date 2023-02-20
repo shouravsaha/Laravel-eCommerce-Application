@@ -38,12 +38,15 @@ class AdminController extends Controller
         $product->quantity = $request->quantity;
         $product->discount_price = $request->discount_price;
         $product->catagory = $request->catagory;
-
         $image = $request->image;
         $imagename = time().'.'.$image->getClientOriginalExtension();
         $request->image->move('product', $imagename);
-
+        $product->image = $imagename;
         $product->save();
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Product Added Successfully');
+    }
+    public function show_product(){
+        $product = Product::all();
+        return view('admin.show_product', compact('product'));
     }
 }

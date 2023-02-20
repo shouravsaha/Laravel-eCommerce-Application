@@ -35,6 +35,12 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="div_center">
+                    @if (session()->has('message'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                        {{session()->get('message')}}
+                    </div>
+                    @endif
                     <h1 class="cat_font">Add Product</h1>
                     <form action="{{url('/add_product')}}" method="POST" enctype="multipart/form-data">
                     @csrf

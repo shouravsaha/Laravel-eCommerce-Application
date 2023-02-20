@@ -38,7 +38,7 @@
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                     {{session()->get('message')}}
                 </div>
-            @endif
+                @endif
                 <div class="div_center">
                     <h2 class="cat_font">Add Catagory</h2>
                     <form action="{{url('/add_catagory')}}" method="POST">
