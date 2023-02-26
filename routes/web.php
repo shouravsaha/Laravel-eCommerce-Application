@@ -27,17 +27,26 @@ Route::middleware([
     })->name('dashboard');
 });
 
+//
+
+
+
+
 // this route show admin panel dashboard
 route::get('/redirect', [HomeController::class, 'redirect']);
 // next 3 route show view catagory option and add catagory and delete catagory
 route::get('/view_catagory', [AdminController::class, 'view_catagory']);
 route::post('/add_catagory', [AdminController::class, 'add_catagory']);
 route::get('/delete_catagory/{id}', [AdminController::class, 'delete_catagory']);
-//
+
+// next 6 route show products update delete add in admin dashboard
 route::get('/view_product', [AdminController::class, 'view_product']);
 route::post('/add_product', [AdminController::class, 'add_product']);
 route::get('/show_product', [AdminController::class, 'show_product']);
 route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 route::get('/update_product/{id}', [AdminController::class, 'update_product']);
 route::post('/update_product_confirm/{id}', [AdminController::class, 'update_product_confirm']);
+
+route::get('/product_details/{id}', [HomeController::class, 'product_details']);
+
 
