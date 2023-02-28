@@ -50,7 +50,9 @@ route::post('/update_product_confirm/{id}', [AdminController::class, 'update_pro
 // product details route
 route::get('/product_details/{id}', [HomeController::class, 'product_details']);
 
-// product add to cart route
+// product add to cart route in db
 route::post('/add_cart/{id}', [HomeController::class, 'add_cart']);
-
+// show add to cart product and remove to cart route
+route::get('/show_cart', [HomeController::class, 'show_cart']);
+route::get('/remove_cart/{id}', [HomeController::class, 'remove_cart']);
 
