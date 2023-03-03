@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
+<base href="/public">
     <title>Laravel 9 - Stripe Payment Gateway Integration Example - ItSolutionStuff.com</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="images/favicon.png" type="">
+      <title>Famms - Fashion HTML Template</title>
+      <!-- bootstrap core css -->
+      <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      <!-- font awesome style -->
+      <link href="home/css/font-awesome.min.css" rel="stylesheet" />
+      <!-- Custom styles for this template -->
+      <link href="home/css/style.css" rel="stylesheet" />
+      <!-- responsive style -->
+      <link href="home/css/responsive.css" rel="stylesheet" />
 </head>
 <body>
-
+    <div class="hero_area">
+        <!-- header section strats -->
+       <span style="font-size: 18px;">@include('home.header');</span>
+        <!-- end header section -->
 <div class="container">
 
-    <h1>Pay Using Your Card</h1>
+    <h1 style="font-size: 18px; text-align: center; padding-bottom: 10px;">Pay Using Your Card - Total Amount ${{$totalprice}}</h1>
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -21,14 +35,14 @@
 
                     @if (Session::has('success'))
                         <div class="alert alert-success text-center">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
                             <p>{{ Session::get('success') }}</p>
                         </div>
                     @endif
 
                     <form
                             role="form"
-                            action="{{route('stripe.post')}}"
+                            action="{{route('stripe.post', $totalprice)}}"
                             method="post"
                             class="require-validation"
                             data-cc-on-file="false"
@@ -78,7 +92,7 @@
 
                         <div class="row">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now</button>
+                                <button class="btn btn-primary bg-primary btn-lg btn-block" type="submit">Pay Now</button>
                             </div>
                         </div>
 
