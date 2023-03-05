@@ -30,10 +30,8 @@ Route::middleware([
 //
 
 
-
-
 // this route show admin panel dashboard
-route::get('/redirect', [HomeController::class, 'redirect']);
+route::get('/redirect', [HomeController::class, 'redirect'])->middleware('auth', 'verified');
 // next 3 route show view catagory option and add catagory and delete catagory
 route::get('/view_catagory', [AdminController::class, 'view_catagory']);
 route::post('/add_catagory', [AdminController::class, 'add_catagory']);
