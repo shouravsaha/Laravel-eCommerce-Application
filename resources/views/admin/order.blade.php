@@ -18,6 +18,7 @@
         }
         .th_deg{
             background: skyblue;
+            padding: 10px;
         }
     </style>
   </head>
@@ -45,6 +46,7 @@
                         <th class="th_deg">Image</th>
                         <th class="th_deg">Delivered</th>
                         <th class="th_deg">Print PDF</th>
+                        <th class="th_deg">Send Email</th>
 
                     </tr>
                     @foreach ($order as $order)
@@ -69,6 +71,9 @@
                                 @endif
                             </td>
                             <td><a href="{{url('print_pdf', $order->id)}}" class="btn btn-primary">Print PDF</a></td>
+                            <td>
+                                <a href="{{url('send_email', $order->id)}}" class="btn btn-danger">Send Email</a>
+                            </td>
                         </tr>
                     @endforeach
                 </table>

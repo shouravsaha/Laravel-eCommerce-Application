@@ -47,6 +47,7 @@ route::post('/update_product_confirm/{id}', [AdminController::class, 'update_pro
 route::get('/showAllOrders', [AdminController::class, 'showAllOrders']);
 route::get('/delivered/{id}', [AdminController::class, 'delivered']);
 route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf']);
+route::get('/send_email/{id}', [AdminController::class, 'send_email']);
 
 
 
