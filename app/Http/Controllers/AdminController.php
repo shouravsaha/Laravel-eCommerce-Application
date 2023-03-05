@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Models\Catagory;
 use App\Models\Order;
 use App\Models\Product;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -80,5 +81,17 @@ class AdminController extends Controller
     public function showAllOrders(){
         $order = Order::all();
         return view('admin.order', compact('order'));
+    }
+    public function delivered($id){
+        $order = Order::find($id);
+        $order->delivery_status = "delivered";
+        $order->payment_status = "paid";
+        $order->save();
+        return redirect()->back();
+    }
+    public function print_pdf($id){
+        $order = Order::find($id);
+        $pdf = PDF::loadView('admin.pdf', compact('order'));
+        return $pdf->download('order_details.pdf');
     }
 }
