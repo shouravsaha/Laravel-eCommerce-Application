@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
+use Illuminate\Contracts\Session\Session as SessionSession;
 use Session;
 use Stripe;
 
@@ -144,7 +145,7 @@ class HomeController extends Controller
             $cart->delete();
         }
 
-        Session::flash('success', 'Payment successful!');
+        Session('success', 'Payment successful!')->flash('success', 'Payment successful');
         return back();
     }
 }

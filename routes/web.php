@@ -46,19 +46,19 @@ route::get('/show_product', [AdminController::class, 'show_product']);
 route::get('/delete_product/{id}', [AdminController::class, 'delete_product']);
 route::get('/update_product/{id}', [AdminController::class, 'update_product']);
 route::post('/update_product_confirm/{id}', [AdminController::class, 'update_product_confirm']);
+route::get('/showAllOrders', [AdminController::class, 'showAllOrders']);
+
 
 // product details route
 route::get('/product_details/{id}', [HomeController::class, 'product_details']);
-
 // product add to cart route in db
 route::post('/add_cart/{id}', [HomeController::class, 'add_cart']);
 // show add to cart product and remove to cart route
 route::get('/show_cart', [HomeController::class, 'show_cart']);
 route::get('/remove_cart/{id}', [HomeController::class, 'remove_cart']);
-
-//
+//under this 2 route show cash on delivery and online payment system stripe
 route::get('/cash_order', [HomeController::class, 'cash_order']);
 route::get('/stripe/{totalprice}', [HomeController::class, 'stripe']);
-
 route::post('/stripe/{totalprice}', [HomeController::class, 'stripePost'])->name('stripe.post');
+
 
