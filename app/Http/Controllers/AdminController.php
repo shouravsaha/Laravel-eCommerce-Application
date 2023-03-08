@@ -114,4 +114,9 @@ class AdminController extends Controller
         Notification::send($order, new SendEmailNotification($details));
         return redirect()->back();
     }
+    public function searchdata(Request $request){
+        $searchText = $request->search;
+        $order = Order::where('name', 'LIKE', "%$searchText%")->get();
+        return view('admin.order', compact('order'));
+    }
 }
