@@ -32,7 +32,7 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <h1 class="title_deg">All Orders</h1>
-                <div style="padding-left: 600px; padding-bottom: 30px;">
+                <div style="padding-left: 400px; padding-bottom: 30px;">
                     <form action="{{url('/search')}}" method="get">
                     @csrf
                         <input type="text" name="search" style="color:black;" placeholder="Search For Something">

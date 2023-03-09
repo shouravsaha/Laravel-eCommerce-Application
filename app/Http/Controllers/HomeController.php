@@ -70,7 +70,6 @@ class HomeController extends Controller
             return redirect('login');
         }
     }
-
     public function show_cart(){
         if(Auth::id()){
             $id = Auth::user()->id;
@@ -85,7 +84,6 @@ class HomeController extends Controller
         $cart->delete();
         return redirect()->back();
     }
-
     public function cash_order(){
         $user = Auth::user();
         $userId = $user->id;
@@ -114,13 +112,10 @@ class HomeController extends Controller
         }
         return redirect()->back()->with('message', 'We have Received Your Order. We will connect with you soon');
     }
-
     public function stripe($totalprice){
         return view('home.stripe', compact('totalprice'));
     }
-
-    public function stripePost(Request $request, $totalprice)
-    {
+    public function stripePost(Request $request, $totalprice){
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
         Stripe\Charge::create ([
@@ -157,5 +152,21 @@ class HomeController extends Controller
 
         Session('success', 'Payment successful!')->flash('success', 'Payment successful');
         return back();
+    }
+    public function show_order(){
+        if(Auth::id()){
+            $user = Auth::User();
+            $userId = $user->id;
+            $order = Order::where('user_id', '=', $userId)->get();
+            return view('home.order', compact('order'));
+        }else{
+            return redirect('login');
+        }
+    }
+    public function cancel_order($id){
+        $order = Order::find($id);
+        $order->delivery_status = 'You canceled the order';
+        $order->save();
+        return redirect()->back();
     }
 }
