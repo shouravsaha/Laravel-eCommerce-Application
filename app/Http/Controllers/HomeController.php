@@ -169,4 +169,13 @@ class HomeController extends Controller
         $order->save();
         return redirect()->back();
     }
+    public function product_search(Request $request){
+        $search_text = $request->search;
+        $product = Product::where('title', 'LIKE', "%$search_text%")->orWhere('catagory', 'LIKE', "%$search_text%")->paginate(10);
+        return view('home.userpage', compact('product'));
+    }
+    public function products(){
+        $product = Product::paginate(10);
+        return view('home.all_product', compact('product'));
+    }
 }
