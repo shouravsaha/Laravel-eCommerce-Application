@@ -27,7 +27,7 @@
         @include('home.header');
          <!-- end header section -->
       <!-- product section -->
-      @include('home.product');
+      @include('home.product_view');
       <!-- end product section -->
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
