@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <base href="/public">
     @include('admin.css');
     <style>
     .div_center{

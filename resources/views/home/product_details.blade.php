@@ -2,7 +2,6 @@
 <html>
     <head>
         <!-- Basic -->
-        <base href="/public">
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- Mobile Metas -->
@@ -14,13 +13,13 @@
         <link rel="shortcut icon" href="images/favicon.png" type="">
         <title>Famms - Fashion HTML Template</title>
         <!-- bootstrap core css -->
-        <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('home/css/bootstrap.css') }}" />
         <!-- font awesome style -->
-        <link href="home/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="{{ asset('home/css/font-awesome.min.css') }}" rel="stylesheet" />
         <!-- Custom styles for this template -->
-        <link href="home/css/style.css" rel="stylesheet" />
+        <link href="{{ asset('home/css/style.css') }}" rel="stylesheet" />
         <!-- responsive style -->
-        <link href="home/css/responsive.css" rel="stylesheet" />
+        <link href="{{ asset('home/css/responsive.css') }}" rel="stylesheet" />
     </head>
     <body>
         <div class="hero_area">
@@ -31,7 +30,7 @@
         <div class="col-sm-6 col-md-4 col-lg-4" style="margin:auto; width:50%; padding:30px">
 
                 <div class="img-box">
-                    <img src="product/{{$product->image}}" class="img-fluid" alt="">
+                    <img src="/product/{{$product->image}}" style="height:400px; width:400px;" alt="">
                 </div>
                 <div class="detail-box">
                     <h5>

@@ -9,14 +9,19 @@ use App\Models\Product;
 use PDF;
 use Notification;
 use App\Notifications\SendEmailNotification;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     //next 3 methods are working to view catagory option
     // and add catagory option and delete catagory option
     public function view_catagory(){
-        $data = Catagory::all();
-        return view('admin.catagory', compact('data'));
+        if(Auth::id()){
+            $data = Catagory::all();
+            return view('admin.catagory', compact('data'));
+        }else{
+            return redirect('login');
+        }
     }
     public function add_catagory(Request $request){
         $data = new Catagory;
@@ -64,21 +69,25 @@ class AdminController extends Controller
         return view('admin.update_product', compact('updateProduct', 'catagory'));
     }
     public function update_product_confirm(Request $request, $id){
-        $product = Product::find($id);
-        $product->title = $request->title;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;
-        $product->discount_price = $request->discount_price;
-        $product->catagory = $request->catagory;
-        $image = $request->image;
-        if($image){
-            $imagename = time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('product', $imagename);
-            $product->image = $imagename;
+        if(Auth::id()){
+            $product = Product::find($id);
+            $product->title = $request->title;
+            $product->description = $request->description;
+            $product->price = $request->price;
+            $product->quantity = $request->quantity;
+            $product->discount_price = $request->discount_price;
+            $product->catagory = $request->catagory;
+            $image = $request->image;
+            if($image){
+                $imagename = time().'.'.$image->getClientOriginalExtension();
+                $request->image->move('product', $imagename);
+                $product->image = $imagename;
+            }
+            $product->save();
+            return redirect()->back()->with('message', 'Product Updated Successfully');
+        }else{
+            return redirect('login');
         }
-        $product->save();
-        return redirect()->back()->with('message', 'Product Updated Successfully');
     }
     public function showAllOrders(){
         $order = Order::all();
